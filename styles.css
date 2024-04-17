@@ -349,7 +349,10 @@ margin-top: 1.7rem;}
   label{
     margin-right: 2rem;
   }
- #username,#password{
+
+}
+@media screen and (max-width:500px){
+  #username,#password{
   width: 200px;
-}
-}
+}}
+
