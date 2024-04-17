@@ -349,4 +349,7 @@ margin-top: 1.7rem;}
   label{
     margin-right: 2rem;
   }
+ #username,#password{
+  width: 200px;
+}
 }
