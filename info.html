@@ -18,9 +18,36 @@
   </head>
   <body>
     <div class="back" style="margin: 2rem">
+      <!-- Display the clicked box information -->
+      <div
+        id="clickedBoxContainer"
+        style="
+          display: flex;
+          flex-direction: row-reverse;
+          justify-content: center;
+        "
+      >
+        <!-- This div will be updated based on the clicked box -->
+        <div
+          id="clickedBoxInfo"
+          style="
+            width: 316px;
+            text-align: end;
+            margin-top: 4rem;
+            font-size: 19px;
+            margin-right: 5px;
+          "
+        ></div>
+      </div>
+
       <section
         class="box boxi"
-        style="display: flex; flex-direction: row; align-items: baseline"
+        style="
+          display: flex;
+          flex-direction: row;
+          align-items: baseline;
+          align-items: baseline;
+        "
       >
         <div class="input-container">
           <input
@@ -36,7 +63,7 @@
         <div class="inputlabel">
           <label for="input1" style="margin-top: 0">الوزن</label>
           <label for="input2"> العنوان</label>
-          <label for="input3">وقت الاستلام</label>
+          <label style="white-space: nowrap" for="input3">وقت الاستلام</label>
         </div>
       </section>
       <a class="button button-large" href="map.html">تحديد الموقع</a>
@@ -47,5 +74,60 @@
         <a href=""> <img src="media\settingsicon.png" alt="" /></a>
       </nav>
     </div>
+
+    <script>
+      document.addEventListener("DOMContentLoaded", function () {
+        // Retrieve the clicked box ID from localStorage
+        var clickedBoxId = localStorage.getItem("clickedBoxId");
+
+        // Get the container div where the clicked box info should be displayed
+        var clickedBoxContainer = document.getElementById(
+          "clickedBoxContainer"
+        );
+
+        // Create a new box element with the clickedBoxId as content
+        var newBox = document.createElement("div");
+        newBox.classList.add("box", "boxc", clickedBoxId);
+
+        // Append the new box to the container
+        clickedBoxContainer.appendChild(newBox);
+
+        // Update the content of clickedBoxInfo based on clickedBoxId
+        var clickedBoxInfo = document.getElementById("clickedBoxInfo");
+        switch (clickedBoxId) {
+          case "box1":
+            clickedBoxInfo.textContent =
+              " إعادة تدوير البلاستيك يحفظ الموارد البترولية ويقلل من انبعاثات الغازات الدفيئة المرتبطة بإنتاجه، ويقلل من التلوث البيئي";
+            break;
+          case "box2":
+            clickedBoxInfo.textContent =
+              "إعادة تدوير المعادن يوفر الطاقة والمياه بشكل كبير مقارنة بإنتاج المعادن من الخامات، ويقلل من الاستنزاف البيئي للموارد الطبيعية";
+            break;
+
+          case "box3":
+            clickedBoxInfo.textContent =
+              "إعادة تدوير الورق يساهم في حماية الغابات وتقليل قطع الأشجار، ويقلل من استهلاك المياه والطاقة في صناعة الورق";
+            break;
+
+          case "box4":
+            clickedBoxInfo.textContent =
+              " إعادة تدوير الملابس يساهم في تقليل النفايات النسيجية ويحافظ على الموارد الطبيعية مثل المياه والأراضي التي تستخدم في صناعة الملابس";
+            break;
+
+          case "box5":
+            clickedBoxInfo.textContent =
+              "إعادة تدوير الخشب يقلل من قطع الأشجار ويحافظ على الغابات والتنوع البيولوجي، ويوفر المواد الخام لصناعات مختلفة";
+            break;
+
+          case "box6":
+            clickedBoxInfo.textContent =
+              "إعادة تدوير الزجاج يقلل من استهلاك المواد الخام والطاقة في عمليات إنتاجه، ويحافظ على جودة الزجاج المعاد تدويره";
+            break;
+          // Add cases for other box IDs as needed
+          default:
+            clickedBoxInfo.textContent = "No info available.";
+        }
+      });
+    </script>
   </body>
 </html>

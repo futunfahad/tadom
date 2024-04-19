@@ -32,32 +32,26 @@
         style="margin-top: 5rem; flex-direction: column"
       >
         <div style="display: flex">
-          <a class="box boxc" href="info.html">
-            <img src="media\image 4.png" alt="" />
+          <a id="box1" class="box boxc box1" href="info.html">
             <p>بلاستيك</p>
           </a>
-          <a class="box boxc" href="info.html">
-            <img src="media\image 5.png" alt="" />
+          <a id="box2" class="box boxc box2" href="info.html">
             <p>معادن</p>
           </a>
         </div>
         <div style="display: flex">
-          <a class="box boxc" href="info.html">
-            <img src="media\image 6.png" alt="" />
+          <a id="box3" class="box boxc box3" href="info.html">
             <p>ورق</p>
           </a>
-          <a class="box boxc" href="info.html">
-            <img src="media\image 7.png" alt="" />
-            <p>الكترونيات</p>
+          <a id="box4" class="box boxc box4" href="info.html">
+            <p>ملابس</p>
           </a>
         </div>
         <div style="display: flex">
-          <a class="box boxc" href="info.html">
-            <img src="media\image 8.png" alt="" />
+          <a id="box5" class="box boxc box5" href="info.html">
             <p>خشب</p>
           </a>
-          <a class="box boxc" href="info.html">
-            <img src="media\image 9.png" alt="" />
+          <a id="box6" class="box boxc box6" href="info.html">
             <p>زجاج</p>
           </a>
         </div>
@@ -69,5 +63,26 @@
         <a href=""> <img src="media\settingsicon.png" alt="" /></a>
       </nav>
     </div>
+
+    <script>
+      document.addEventListener("DOMContentLoaded", function () {
+        // Get all the box elements
+        var boxes = document.querySelectorAll(".box.boxc");
+
+        // Add click event listeners to each box
+        boxes.forEach(function (box) {
+          box.addEventListener("click", function () {
+            // Get the ID of the clicked box
+            var clickedBoxId = this.id;
+
+            // Store the clicked box ID in localStorage
+            localStorage.setItem("clickedBoxId", clickedBoxId);
+
+            // Navigate to info.html
+            window.location.href = "info.html";
+          });
+        });
+      });
+    </script>
   </body>
 </html>

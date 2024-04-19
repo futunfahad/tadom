@@ -14,12 +14,27 @@
         href="https://fonts.googleapis.com/css2?family=Rubik:ital,wght@0,300..900;1,300..900&display=swap"
         rel="stylesheet"
       />
+      <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
+      <!-- Include Leaflet JavaScript -->
+      <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+      <!-- Define styles for the map container -->
+
     </head>
-  </head>
+
   <body>
     <div class="back" style="margin: 2rem">
-      <img class="map" src="media\map.png" alt="" />
-      <img class="point" src="media\point.png" alt="" />
+      <div id="map" class="map" >
+        <dotlottie-player
+        src="https://lottie.host/f4f10451-315c-44cd-8562-c2e4600e8e77/Zz1vUCPcNU.json"
+        background="transparent"
+        speed="1"
+        style="width: 150px; height: 150px"
+        loop
+        autoplay
+        class="loading-indicator"
+      ></dotlottie-player>
+      </div>
+
       <a class="button button-large" href="sent.html">تاكيد الموقع</a>
       <nav class="main_nav">
         <a href="main.html"> <img src="media\houseicon.png" alt="" /></a>
@@ -28,5 +43,63 @@
         <a href=""> <img src="media\settingsicon.png" alt="" /></a>
       </nav>
     </div>
+    <script>
+      // Initialize the map
+      var map = L.map("map");
+
+      // Add the OpenStreetMap tile layer
+      L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
+        attribution: "&copy; OpenStreetMap contributors",
+      }).addTo(map);
+
+           // Show loading indicator while the map is loading
+           map.on("load", function () {
+        document.querySelector(".loading-indicator").style.display = "none";
+      });
+
+      // Get the user's location using Geolocation API
+      if ("geolocation" in navigator) {
+        navigator.geolocation.getCurrentPosition(
+          function (position) {
+            var lat = position.coords.latitude;
+            var lng = position.coords.longitude;
+
+            // Set the map's view to the user's location
+            map.setView([lat, lng], 10); // Zoom level 10
+          },
+          function (error) {
+            // Handle error when user blocks location access
+            console.error("Error getting user location:", error);
+            // Set default view to Saudi Arabia
+            map.setView([25, 45], 5); // Centered around Saudi Arabia with zoom level 5
+          }
+        );
+      } else {
+        alert("Geolocation is not supported by your browser.");
+        // Set default view to Saudi Arabia
+        map.setView([25, 45], 5); // Centered around Saudi Arabia with zoom level 5
+      }
+
+      var marker = null; // Initialize marker variable
+
+      // Add a marker when the map is clicked
+      map.on("click", function (e) {
+        var lat = e.latlng.lat;
+        var lng = e.latlng.lng;
+
+        // Remove the previous marker if it exists
+        if (marker !== null) {
+          map.removeLayer(marker);
+        }
+
+        // Create a new marker at the clicked location
+        marker = L.marker([lat, lng]).addTo(map);
+        marker.bindPopup("You clicked here").openPopup();
+      });
+    </script>
+        <script
+        src="https://unpkg.com/@dotlottie/player-component@latest/dist/dotlottie-player.mjs"
+        type="module"
+      ></script>
   </body>
 </html>

@@ -14,17 +14,17 @@
         href="https://fonts.googleapis.com/css2?family=Rubik:ital,wght@0,300..900;1,300..900&display=swap"
         rel="stylesheet"
       />
+      <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
     </head>
   </head>
   <body>
-    <div class="back" style="margin: 2rem; height: 706px;">
-      <img
-        style="position: absolute; z-index: -1; width: 350px"
+    <div class="back" style="margin: 2rem; height: 864px;">
+      <div
+        style="  width: 90%;height: 451px;"
         class="map"
-        src="media\map.png"
-        alt=""
-      />
-      <img style="width: 350px" src="media\driver.png" alt="" />
+        id="map"
+      ></div>
+     
 
       <section class="box-white" style="display: flex; font-size: 0.8rem; margin-bottom: 1.6rem;">
         <div style="display: flex">
@@ -54,7 +54,16 @@
           </div>
 
       </section>
-      <a class="button-39" href="main.html" style=" border-radius: 35px;">الصفحة الرئيسية</a>
+      <div style="display: flex;
+      flex-direction: column;
+      margin: 0 auto auto;
+      width: 171px;
+    ">
+      <a class="button-39" href="history.html" style="border-radius: 35px;margin-bottom: 0.6rem;"
+        > سجل الاستلام </a>
+      <a class="button-39" href="main.html" style=" border-radius: 35px;margin-bottom: 3rem;">الصفحة الرئيسية</a>
+    </div>
+
       <nav class="main_nav">
         <a href="main.html"> <img src="media\houseicon.png" alt="" /></a>
         <a href=""> <img src="media\walleteicon.png" alt="" /></a>
@@ -63,4 +72,48 @@
       </nav>
     </div>
   </body>
+  
+  <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+  <script src="https://unpkg.com/leaflet-routing-machine/dist/leaflet-routing-machine.js"></script>
+
+  <script>
+    var map = L.map("map").setView([25.8862, 45.3923], 13); // Set default view to Qatar
+
+    L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
+      attribution: "&copy; OpenStreetMap contributors",
+    }).addTo(map);
+    
+    var carIcon = L.icon({
+      iconUrl: "media/point.png",
+      iconSize: [90, 90],
+      iconAnchor: [40, 40],
+      popupAnchor: [-3, -76],
+    });
+
+    var marker = L.marker([25.286106, 51.534817], { icon: carIcon }).addTo(
+      map
+    ); // Initial car position
+
+    // Routing
+    L.Routing.control({
+      waypoints: [
+        L.latLng(25.909, 45.367), // Start point
+        L.latLng(25.8862, 45.3923), // End point (Example location)
+      ],
+      routeWhileDragging: true,
+      lineOptions: {
+        styles: [{ color: "green", opacity: 1, weight: 5 }],
+      },
+      createMarker: function (i, waypoint, n) {
+        if (i === 0) {
+          // Start marker
+          return L.marker(waypoint.latLng, { icon: carIcon });
+        } else {
+          // End marker
+          return L.marker(waypoint.latLng).bindPopup("Destination");
+        }
+      },
+    }).addTo(map);
+    document.querySelector(".leaflet-routing-container").style.display = "none";
+  </script>
 </html>

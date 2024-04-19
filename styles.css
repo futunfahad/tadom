@@ -1,3 +1,6 @@
+  :root{
+    --main-color:rgb(213, 231, 209);
+  }
 
   *,
   *::after,
@@ -146,7 +149,7 @@ form>*{
 }
 label{
   text-align: right;
-  margin-right: 4rem;
+  margin-right: 2rem;
 }
 #loginContainer{
   margin-top: 7rem;
@@ -237,8 +240,13 @@ input{
 }
 
 .map{
-  width: 272px;
-  height: 449px;
+  height: 503px;
+  width: 90%;
+  border-radius: 20px;
+  margin: auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 
@@ -288,6 +296,10 @@ input{
 
 .boxc{
   position: relative;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+  border: 3px solid var(--main-color);
 }
 
 .boxc>p{
@@ -295,14 +307,11 @@ input{
   bottom: -41px;
 }
 
-.boxc>img{
-  width: 123px;
-  height: 127px;
-  border-radius: 30px;
-}
+
 .boxi{
+  
   max-width: 451px;
-  height: 324px;
+  height: 294px;
   width: 90%;
 }
 
@@ -323,7 +332,7 @@ input{
 margin-top: 1.7rem;}
 
 #input3{
-  margin-top: 6rem
+  margin-top: 4.1rem;
 }
 @media screen and (max-width:450px){
   .input-container>input{
@@ -332,7 +341,7 @@ margin-top: 1.7rem;}
     height: 30px;
   }
   .inputlabel>label{
-    margin-top: 3rem;
+    margin-top: 3.5rem;
     display: block;
     font-size: 1.2rem;
   }
@@ -350,9 +359,105 @@ margin-top: 1.7rem;}
     margin-right: 2rem;
   }
 
-}
-@media screen and (max-width:500px){
   #username,#password{
-  width: 200px;
-}}
+    width: 200px;
+  }
+}
 
+.box1{
+  background-image: url("media/plastic.png");
+}
+
+.box2{
+  background-image: url("media/metal.png");
+}
+.box3{
+  background-image: url("media/paper.png");
+}
+.box4{
+  background-image: url("media/clothes.png");
+}
+.box5{
+  background-image: url("media/wood.png");
+}
+.box6{
+  background-image: url("media/glass.png");
+}
+
+.search {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  text-align: center;
+  width: 16em;
+  margin: 0.5rem auto; 
+}
+
+.search__input {
+  font-family: inherit;
+  font-size: inherit;
+  background-color: white;
+  border: none;
+  color: #646464;
+  padding: 0.7rem 1rem;
+  border-radius: 30px;
+  width: 16em;
+  transition: all ease-in-out .5s;
+  margin-right: -2rem;
+}
+
+
+.search__input::-webkit-input-placeholder {
+  font-weight: 100;
+  color: #ccc;
+}
+
+
+
+.search__button {
+  border: none;
+  background-color: white;
+  margin-top: .1em;
+}
+
+.search__button:hover {
+  cursor: pointer;
+}
+
+.search__icon {
+  height: 1.3em;
+  width: 1.3em;
+  fill: #b4b4b4;
+}
+.search__input:focus {
+  outline: none;
+
+}
+
+
+
+.contact{
+  display: flex;
+  margin: 1rem;
+  text-align: left;
+  background: white;
+  border-bottom: 2px solid #f0f0f0;
+
+}
+.contact>img{
+  margin: 1.5rem;
+  margin-left: auto;
+}
+.contact-name{
+  font-size: 1.3rem;
+  font-weight: 300;
+  margin: 0;
+  margin-bottom: 8px;
+}
+
+.contact-date{
+  margin: 0;
+color: gray;
+font-size: 0.8rem;
+margin-bottom: 0.9rem;
+}
